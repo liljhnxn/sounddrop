@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="limeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DFFF00" />
+      <stop offset="100%" stop-color="#88b300" />
+    </linearGradient>
+  </defs>
+  <!-- Background Dark Disc -->
+  <rect width="64" height="64" rx="16" fill="#0B0B0D" />
+  <circle cx="32" cy="32" r="26" fill="#18181B" stroke="#27272A" stroke-width="1.5" />
+  <!-- Vinyl Ring Grooves -->
+  <circle cx="32" cy="32" r="20" fill="none" stroke="#27272A" stroke-dasharray="2 2" stroke-width="1" />
+  <circle cx="32" cy="32" r="14" fill="none" stroke="#27272A" stroke-width="1" />
+  <!-- Electric Lime Core -->
+  <circle cx="32" cy="32" r="8.5" fill="url(#limeGrad)" />
+  <circle cx="32" cy="32" r="3" fill="#0B0B0D" />
+  <!-- Soundwave accents -->
+  <path d="M46 22 A 16 16 0 0 1 46 42" fill="none" stroke="#DFFF00" stroke-width="2.5" stroke-linecap="round" />
+</svg>
+
