@@ -2,10 +2,11 @@
 
 **Platform:** SoundDrop  
 **Tagline:** *"Discover. Share. Repeat."*  
-**Network:** Botchain Testnet (`Chain ID: 968`)  
-**Verified Contract:** [`0xcc8e6A07bc99f3C0c64116F84c66dcaAFA359F86`](https://scan.bohr.life/address/0xcc8e6A07bc99f3C0c64116F84c66dcaAFA359F86#code)  
+**Network:** Botchain Mainnet (`Chain ID: 677`)  
+**Verified Contract:** [`0xD1c202A518580a58F9fE4f9bC2C8F2cD8adFF9ad`](https://scan.botchain.ai/address/0xD1c202A518580a58F9fE4f9bC2C8F2cD8adFF9ad#code)  
+**Native Token:** BOT (Total Supply: 150 Million)  
 **Repository:** [https://github.com/liljhnxn/sounddrop.git](https://github.com/liljhnxn/sounddrop.git)  
-**Status:** Live & Deployed  
+**Status:** Live & Deployed on Mainnet  
 
 ---
 
@@ -140,10 +141,12 @@ SoundDrop is a premier consumer showcase for the Botchain ecosystem:
 
 ## 8. Verification & Resource Links
 
-- **Block Explorer Verified Contract:** [https://scan.bohr.life/address/0xcc8e6A07bc99f3C0c64116F84c66dcaAFA359F86#code](https://scan.bohr.life/address/0xcc8e6A07bc99f3C0c64116F84c66dcaAFA359F86#code)
+- **Block Explorer Verified Mainnet Contract:** [https://scan.botchain.ai/address/0xD1c202A518580a58F9fE4f9bC2C8F2cD8adFF9ad#code](https://scan.botchain.ai/address/0xD1c202A518580a58F9fE4f9bC2C8F2cD8adFF9ad#code)
 - **GitHub Repository:** [https://github.com/liljhnxn/sounddrop.git](https://github.com/liljhnxn/sounddrop.git)
-- **Network RPC:** `https://rpc.bohr.life`
-- **Chain ID:** `968`
+- **Network RPC:** `https://rpc.botchain.ai`
+- **Chain ID:** `677`
+- **Native Currency:** `BOT` (Total Supply: 150 Million)
 
 ---
 *© 2026 SoundDrop Protocol. Built on Botchain.*
+

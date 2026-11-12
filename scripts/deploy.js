@@ -3,31 +3,67 @@ const fs = require("fs");
 const path = require("path");
 
 async function main() {
-  console.log("-----------------------------------------");
-  console.log(" Deploying SoundDrop to Botchain Testnet ");
-  console.log("-----------------------------------------");
-
   const [deployer] = await hre.ethers.getSigners();
+  const network = await hre.ethers.provider.getNetwork();
+  const chainId = Number(network.chainId);
+
+  const isMainnet = chainId === 677;
+  const networkName = isMainnet ? "Botchain Mainnet" : (chainId === 968 ? "Botchain Testnet" : `Chain ${chainId}`);
+  const nativeSymbol = isMainnet ? "BOT" : "BOHR";
+  const explorerBase = isMainnet ? "https://scan.botchain.ai" : "https://scan.bohr.life";
+
+  console.log("=========================================");
+  console.log(` Deploying SoundDrop to ${networkName} `);
+  console.log("=========================================");
+  console.log("Chain ID:", chainId);
   console.log("Deployer address:", deployer.address);
 
-  const balance = await hre.ethers.provider.getBalance(deployer.address);
-  console.log("Deployer balance:", hre.ethers.formatEther(balance), "BOHR");
+  const balanceBefore = await hre.ethers.provider.getBalance(deployer.address);
+  console.log(`Deployer balance: ${hre.ethers.formatEther(balanceBefore)} ${nativeSymbol}`);
+
+  // Fetch fee data to verify gas price (keeping gas fees minimal)
+  const feeData = await hre.ethers.provider.getFeeData();
+  const gasPrice = feeData.gasPrice;
+  console.log(`Current Gas Price: ${gasPrice ? hre.ethers.formatUnits(gasPrice, "gwei") + " gwei" : "default"}`);
 
   const SoundDrop = await hre.ethers.getContractFactory("SoundDrop");
-  console.log("Deploying contract...");
-  const soundDrop = await SoundDrop.deploy();
-  await soundDrop.waitForDeployment();
+  console.log("\nDeploying contract with minimal gas...");
 
+  // Deploy using network gasPrice without unnecessary markup
+  const deployOptions = {};
+  if (gasPrice) {
+    deployOptions.gasPrice = gasPrice;
+  }
+
+  const soundDrop = await SoundDrop.deploy(deployOptions);
+  console.log("Transaction hash:", soundDrop.deploymentTransaction().hash);
+  console.log("Waiting for confirmation on Botchain...");
+
+  const receipt = await soundDrop.deploymentTransaction().wait(1);
   const deployedAddress = await soundDrop.getAddress();
-  console.log("\n>>> SoundDrop deployed successfully to:", deployedAddress);
-  console.log(">>> Explorer link: https://scan.bohr.life/address/" + deployedAddress);
 
-  // Write deployment info to frontend config
+  const balanceAfter = await hre.ethers.provider.getBalance(deployer.address);
+  const gasUsed = receipt.gasUsed;
+  const effectiveGasPrice = receipt.gasPrice || gasPrice || 0n;
+  const totalCost = gasUsed * effectiveGasPrice;
+
+  console.log("\n=========================================");
+  console.log(">>> SoundDrop DEPLOYED SUCCESSFULLY!");
+  console.log(">>> Contract Address:", deployedAddress);
+  console.log(`>>> Gas Used: ${gasUsed.toString()} units`);
+  console.log(`>>> Total Gas Fee: ${hre.ethers.formatEther(totalCost)} ${nativeSymbol}`);
+  console.log(`>>> Remaining Balance: ${hre.ethers.formatEther(balanceAfter)} ${nativeSymbol}`);
+  console.log(`>>> Explorer: ${explorerBase}/address/${deployedAddress}`);
+  console.log("=========================================\n");
+
+  // Save deployment info
   const configPath = path.join(__dirname, "..", "src", "config", "deployedAddress.json");
   const deploymentInfo = {
     address: deployedAddress,
-    network: "botchain",
-    chainId: 968,
+    network: isMainnet ? "botchainMainnet" : "botchain",
+    chainId: chainId,
+    explorer: explorerBase,
+    nativeSymbol: nativeSymbol,
     deployedAt: new Date().toISOString(),
   };
 
@@ -43,8 +79,15 @@ async function main() {
       /NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS=.*/,
       `NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS="${deployedAddress}"`
     );
+    if (isMainnet) {
+      envContent = envContent.replace(
+        /BOTCHAIN_RPC_URL=.*/,
+        `BOTCHAIN_RPC_URL="https://rpc.botchain.ai"`
+      );
+    }
     fs.writeFileSync(envPath, envContent);
   }
+
   const envLocalPath = path.join(__dirname, "..", ".env.local");
   if (fs.existsSync(envLocalPath)) {
     let envContent = fs.readFileSync(envLocalPath, "utf8");
@@ -52,14 +95,19 @@ async function main() {
       /NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS=.*/,
       `NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS="${deployedAddress}"`
     );
+    if (isMainnet) {
+      envContent = envContent.replace(
+        /BOTCHAIN_RPC_URL=.*/,
+        `BOTCHAIN_RPC_URL="https://rpc.botchain.ai"`
+      );
+    }
     fs.writeFileSync(envLocalPath, envContent);
   }
 
-  console.log("-----------------------------------------");
-  console.log("Deployment finished successfully!");
+  console.log(">>> Environment files updated with new contract address.");
 }
 
 main().catch((error) => {
-  console.error(error);
+  console.error("Deployment failed:", error);
   process.exitCode = 1;
 });

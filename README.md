@@ -2,7 +2,7 @@
 
 > **Tagline:** *"Discover. Share. Repeat."*
 
-A decentralized, permissionless music-discovery platform where users share songs they love and explore music recommendations from people around the world. Built exclusively on the **Botchain Testnet**.
+A decentralized, permissionless music-discovery platform where users share songs they love and explore music recommendations from people around the world. Built on **Botchain Mainnet**.
 
 ---
 
@@ -16,15 +16,16 @@ A decentralized, permissionless music-discovery platform where users share songs
 
 ---
 
-## 🌐 Network Information: Botchain Testnet
+## 🌐 Network Information: Botchain Mainnet
 
 | Parameter | Value |
 | :--- | :--- |
-| **Network Name** | Botchain Testnet |
-| **Chain ID** | `968` |
-| **RPC URL** | [https://rpc.bohr.life](https://rpc.bohr.life) |
-| **Explorer** | [https://scan.bohr.life](https://scan.bohr.life) |
-| **Native Currency** | BOHR |
+| **Network Name** | Botchain Mainnet |
+| **Chain ID** | `677` |
+| **RPC URL** | [https://rpc.botchain.ai](https://rpc.botchain.ai) |
+| **Explorer** | [https://scan.botchain.ai](https://scan.botchain.ai) |
+| **Native Token** | BOT (Total Supply: 150 Million) |
+| **Contract Address** | `0xD1c202A518580a58F9fE4f9bC2C8F2cD8adFF9ad` |
 
 ---
 

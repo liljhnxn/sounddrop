@@ -355,7 +355,7 @@ export default function SoundDropApp() {
     if (currentChainId !== BOTCHAIN_CHAIN_ID) {
       setNotification({
         type: "error",
-        message: "Please switch to Botchain Testnet (Chain ID 968).",
+        message: `Please switch to Botchain Mainnet (Chain ID ${BOTCHAIN_CHAIN_ID}).`,
       });
       switchChain?.({ chainId: BOTCHAIN_CHAIN_ID });
       return;
@@ -442,7 +442,7 @@ export default function SoundDropApp() {
     }
 
     if (currentChainId !== BOTCHAIN_CHAIN_ID) {
-      setFormError("Switch network to Botchain Testnet (Chain ID 968).");
+      setFormError(`Switch network to Botchain Mainnet (Chain ID ${BOTCHAIN_CHAIN_ID}).`);
       switchChain?.({ chainId: BOTCHAIN_CHAIN_ID });
       return;
     }
@@ -627,7 +627,7 @@ export default function SoundDropApp() {
                   Sound<span className="text-[#DFFF00]">Drop</span>
                 </span>
                 <span className="text-[10px] tracking-wider uppercase font-bold px-2 py-0.5 rounded-full bg-[#DFFF00]/10 text-[#DFFF00] border border-[#DFFF00]/20">
-                  Botchain Testnet
+                  Botchain Mainnet
                 </span>
               </div>
               <p className="text-xs text-[#A1A1AA] hidden sm:block tracking-wide">
@@ -659,7 +659,7 @@ export default function SoundDropApp() {
                 onClick={() => switchChain?.({ chainId: BOTCHAIN_CHAIN_ID })}
                 className="px-3 py-2 text-xs font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-xl hover:bg-amber-500/20 transition-all"
               >
-                Switch to Chain 968
+                Switch to Chain {BOTCHAIN_CHAIN_ID}
               </button>
             )}
 
@@ -1082,7 +1082,7 @@ export default function SoundDropApp() {
               <div>
                 <h3 className="text-xl font-bold text-white">Drop a Track</h3>
                 <p className="text-xs text-zinc-400">
-                  Share your favorite sound on Botchain Testnet
+                  Share your favorite sound on Botchain Mainnet
                 </p>
               </div>
             </div>
@@ -1254,7 +1254,7 @@ export default function SoundDropApp() {
             >
               Botchain Explorer <ExternalLink className="w-3 h-3" />
             </a>
-            <span>Chain ID: 968</span>
+            <span>Chain ID: {BOTCHAIN_CHAIN_ID}</span>
             <span>Zero Backend &bull; 100% On-Chain</span>
           </div>
         </div>
