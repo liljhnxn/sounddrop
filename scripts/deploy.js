@@ -7,10 +7,9 @@ async function main() {
   const network = await hre.ethers.provider.getNetwork();
   const chainId = Number(network.chainId);
 
-  const isMainnet = chainId === 677;
-  const networkName = isMainnet ? "Botchain Mainnet" : (chainId === 968 ? "Botchain Testnet" : `Chain ${chainId}`);
-  const nativeSymbol = isMainnet ? "BOT" : "BOHR";
-  const explorerBase = isMainnet ? "https://scan.botchain.ai" : "https://scan.bohr.life";
+  const networkName = "BOT Chain Mainnet";
+  const nativeSymbol = "BOT";
+  const explorerBase = "https://scan.botchain.ai";
 
   console.log("=========================================");
   console.log(` Deploying SoundDrop to ${networkName} `);
@@ -37,7 +36,7 @@ async function main() {
 
   const soundDrop = await SoundDrop.deploy(deployOptions);
   console.log("Transaction hash:", soundDrop.deploymentTransaction().hash);
-  console.log("Waiting for confirmation on Botchain...");
+  console.log("Waiting for confirmation on BOT Chain...");
 
   const receipt = await soundDrop.deploymentTransaction().wait(1);
   const deployedAddress = await soundDrop.getAddress();
@@ -60,7 +59,7 @@ async function main() {
   const configPath = path.join(__dirname, "..", "src", "config", "deployedAddress.json");
   const deploymentInfo = {
     address: deployedAddress,
-    network: isMainnet ? "botchainMainnet" : "botchain",
+    network: "botchain",
     chainId: chainId,
     explorer: explorerBase,
     nativeSymbol: nativeSymbol,
@@ -79,12 +78,10 @@ async function main() {
       /NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS=.*/,
       `NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS="${deployedAddress}"`
     );
-    if (isMainnet) {
-      envContent = envContent.replace(
-        /BOTCHAIN_RPC_URL=.*/,
-        `BOTCHAIN_RPC_URL="https://rpc.botchain.ai"`
-      );
-    }
+    envContent = envContent.replace(
+      /BOTCHAIN_RPC_URL=.*/,
+      `BOTCHAIN_RPC_URL="https://rpc.botchain.ai"`
+    );
     fs.writeFileSync(envPath, envContent);
   }
 
@@ -95,12 +92,10 @@ async function main() {
       /NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS=.*/,
       `NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS="${deployedAddress}"`
     );
-    if (isMainnet) {
-      envContent = envContent.replace(
-        /BOTCHAIN_RPC_URL=.*/,
-        `BOTCHAIN_RPC_URL="https://rpc.botchain.ai"`
-      );
-    }
+    envContent = envContent.replace(
+      /BOTCHAIN_RPC_URL=.*/,
+      `BOTCHAIN_RPC_URL="https://rpc.botchain.ai"`
+    );
     fs.writeFileSync(envLocalPath, envContent);
   }
 

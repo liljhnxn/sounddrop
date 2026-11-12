@@ -36,6 +36,8 @@ import {
   SOUND_DROP_ADDRESS,
   BOTCHAIN_CHAIN_ID,
   BOTCHAIN_EXPLORER_URL,
+  BOTCHAIN_WEBSITE_URL,
+  BOTCHAIN_NATIVE_TOKEN,
 } from "@/config/contract";
 
 // Types
@@ -626,9 +628,16 @@ export default function SoundDropApp() {
                 <span className="text-2xl font-black tracking-tight text-white">
                   Sound<span className="text-[#DFFF00]">Drop</span>
                 </span>
-                <span className="text-[10px] tracking-wider uppercase font-bold px-2 py-0.5 rounded-full bg-[#DFFF00]/10 text-[#DFFF00] border border-[#DFFF00]/20">
-                  Botchain Mainnet
-                </span>
+                <a
+                  href={BOTCHAIN_EXPLORER_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  title="View on BOT Chain Explorer"
+                  className="text-[10px] tracking-wider uppercase font-bold px-2.5 py-0.5 rounded-full bg-[#DFFF00]/10 text-[#DFFF00] border border-[#DFFF00]/20 hover:bg-[#DFFF00]/20 hover:border-[#DFFF00]/40 transition flex items-center gap-1"
+                >
+                  BOT Chain Mainnet
+                  <ExternalLink className="w-2.5 h-2.5" />
+                </a>
               </div>
               <p className="text-xs text-[#A1A1AA] hidden sm:block tracking-wide">
                 Discover. Share. Repeat.
@@ -1236,26 +1245,90 @@ export default function SoundDropApp() {
         </div>
       )}
 
-      {/* FOOTER */}
-      <footer className="mt-auto border-t border-[#27272A]/70 bg-[#0B0B0D] py-8 text-xs text-[#A1A1AA]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-white">SoundDrop</span>
-            <span>&bull;</span>
-            <span>Discover. Share. Repeat.</span>
+      {/* ECOSYSTEM & FOOTER */}
+      <footer className="mt-auto border-t border-[#27272A]/70 bg-[#0B0B0D] py-10 text-xs text-[#A1A1AA]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          {/* Ecosystem Links Banner */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-[#18181B]/80 border border-[#27272A]">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-[#DFFF00]/10 border border-[#DFFF00]/30 flex items-center justify-center text-[#DFFF00] font-bold text-sm">
+                BOT
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-white text-sm">Powered by BOT Chain</span>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#DFFF00]/15 text-[#DFFF00]">
+                    Chain ID {BOTCHAIN_CHAIN_ID}
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-400">
+                  Decentralized, fast & low-fee EVM blockchain &bull; Native Token: {BOTCHAIN_NATIVE_TOKEN}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 flex-wrap">
+              <a
+                href={BOTCHAIN_WEBSITE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#27272A]/70 text-white hover:bg-[#DFFF00] hover:text-black transition"
+              >
+                <span>BOT Chain Website</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={BOTCHAIN_EXPLORER_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#27272A]/70 text-white hover:bg-[#DFFF00] hover:text-black transition"
+              >
+                <span>BOT Chain Explorer</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={`${BOTCHAIN_EXPLORER_URL}/address/${SOUND_DROP_ADDRESS}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-[#DFFF00]/30 text-[#DFFF00] hover:bg-[#DFFF00]/10 transition"
+              >
+                <span>Verified Contract</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <a
-              href={BOTCHAIN_EXPLORER_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-[#DFFF00] transition flex items-center gap-1"
-            >
-              Botchain Explorer <ExternalLink className="w-3 h-3" />
-            </a>
-            <span>Chain ID: {BOTCHAIN_CHAIN_ID}</span>
-            <span>Zero Backend &bull; 100% On-Chain</span>
+          {/* Bottom Row */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#27272A]/40">
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-white">SoundDrop</span>
+              <span>&bull;</span>
+              <span>Discover. Share. Repeat.</span>
+            </div>
+
+            <div className="flex items-center gap-4 text-[11px] text-zinc-400">
+              <span>Zero Backend &bull; 100% On-Chain</span>
+              <span>&bull;</span>
+              <a
+                href={BOTCHAIN_WEBSITE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#DFFF00] transition"
+              >
+                botchain.ai
+              </a>
+              <span>&bull;</span>
+              <a
+                href={BOTCHAIN_EXPLORER_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#DFFF00] transition"
+              >
+                scan.botchain.ai
+              </a>
+            </div>
           </div>
         </div>
       </footer>

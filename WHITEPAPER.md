@@ -48,8 +48,8 @@ SoundDrop is engineered under strict architectural purity: **Exactly One Webpage
 ```mermaid
 flowchart TD
     User([User / Curator]) -->|Connect Wallet| UI[SoundDrop One-Page Frontend\nNext.js 14 + Tailwind CSS]
-    UI -->|viem / wagmi RPC| BotchainRPC[Botchain RPC Node\nhttps://rpc.bohr.life]
-    BotchainRPC -->|Read/Write State| SC[SoundDrop.sol Contract\n0xcc8e6A...F86]
+    UI -->|viem / wagmi RPC| BotchainRPC[BOT Chain RPC Node\nhttps://rpc.botchain.ai]
+    BotchainRPC -->|Read/Write State| SC[SoundDrop.sol Contract\n0xD1c202...9ad]
     SC -->|Emit Events| Events[SongSubmitted / SongLiked / SongRemoved]
     UI -->|External Listen| Platforms[Spotify / YouTube / SoundCloud / Apple Music]
 ```
@@ -57,7 +57,7 @@ flowchart TD
 ### Key Technical Characteristics:
 - **Frontend Framework**: Next.js 14 (App Router) with single-page layout (`src/app/page.tsx`).
 - **Styling Architecture**: Custom dark music-player aesthetic (`#0B0B0D` background, `#18181B` cards, `#DFFF00` electric lime accent).
-- **Web3 Connectivity**: `wagmi v2` + `viem` with auto-chain switching to Botchain Testnet (`Chain ID: 968`).
+- **Web3 Connectivity**: `wagmi v2` + `viem` with auto-chain switching to BOT Chain Mainnet (`Chain ID: 677`).
 - **Contract Language**: Solidity `^0.8.20` with custom gas-optimized errors and batch view methods (`batchHasLiked`, `getStats`).
 
 ---
@@ -119,12 +119,12 @@ struct Song {
 - **Electric Aesthetic**: Polished, dark music-player UI inspired by modern audio gear.
 
 ### Slide 5: Live Traction & Verification
-- **Testnet Contract**: Fully verified on Botchain block explorer.
+- **Mainnet Contract**: Fully deployed and verified on BOT Chain block explorer.
 - **100% Test Coverage**: 16/16 unit tests passing across all state transitions.
 - **Open Source**: Complete code published on GitHub.
 
 ### Slide 6: Roadmap
-- **Q1 2027**: Mainnet Deployment on Botchain; Native tipping module for curating users.
+- **Q1 2027**: Native tipping module in BOT token for curating users.
 - **Q2 2027**: Mobile PWA (Progressive Web App) with in-app audio preview widgets.
 - **Q3 2027**: Collaborative on-chain playlists and curator reputation scores.
 

@@ -17,4 +17,5 @@ export const CONTRACT_CONFIG = {
 export const BOTCHAIN_CHAIN_ID = 677;
 export const BOTCHAIN_RPC_URL = process.env.BOTCHAIN_RPC_URL || "https://rpc.botchain.ai";
 export const BOTCHAIN_EXPLORER_URL = "https://scan.botchain.ai";
+export const BOTCHAIN_WEBSITE_URL = "https://botchain.ai";
 export const BOTCHAIN_NATIVE_TOKEN = "BOT";

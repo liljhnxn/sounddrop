@@ -87,9 +87,9 @@ cp .env.example .env.local
 
 Fill in your configuration:
 ```env
-BOTCHAIN_RPC_URL="https://rpc.bohr.life"
+BOTCHAIN_RPC_URL="https://rpc.botchain.ai"
 PRIVATE_KEY="your_private_key_for_deployment"
-NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS="0x..."
+NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS="0xD1c202A518580a58F9fE4f9bC2C8F2cD8adFF9ad"
 ```
 
 ### 3. Compile & Test Smart Contract
@@ -102,11 +102,11 @@ npm run compile
 npm run test
 ```
 
-### 4. Deploy to Botchain Testnet
+### 4. Deploy to BOT Chain Mainnet
 
-Ensure your deployer account has some testnet BOHR:
+Deploy to BOT Chain Mainnet (Chain ID 677):
 ```bash
-npm run deploy:botchain
+npm run deploy:mainnet
 ```
 
 The script will automatically write the deployed address to `src/config/deployedAddress.json`. Update `NEXT_PUBLIC_SOUND_DROP_CONTRACT_ADDRESS` in `.env.local` with this address.
@@ -134,6 +134,14 @@ The test suite in `test/SoundDrop.test.js` verifies:
 - ✅ Reverting unauthorized removals
 - ✅ Accurate platform statistics (`getStats`)
 - ✅ Batch like status retrieval (`batchHasLiked`)
+
+---
+
+## 🌐 BOT Chain Ecosystem
+
+- **BOT Chain Website**: [https://botchain.ai](https://botchain.ai)
+- **BOT Chain Explorer**: [https://scan.botchain.ai](https://scan.botchain.ai)
+- **Verified Mainnet Contract**: [https://scan.botchain.ai/address/0xD1c202A518580a58F9fE4f9bC2C8F2cD8adFF9ad#code](https://scan.botchain.ai/address/0xD1c202A518580a58F9fE4f9bC2C8F2cD8adFF9ad#code)
 
 ---
 
