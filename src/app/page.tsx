@@ -63,7 +63,7 @@ const CURATED_INITIAL_SONGS: SongItem[] = [
     platform: "Spotify",
     url: "https://open.spotify.com/track/0VjIjW4GlUZAMYd2vXMi3b",
     description: "Peak 80s synth-pop revival that never gets old. Timeless energy.",
-    author: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    author: "0x83acc57bb9CDe889b248E9c740F5248637cd89f4",
     timestamp: BigInt(Math.floor(Date.now() / 1000) - 86400 * 3),
     likeCount: 42n,
     isActive: true,
@@ -75,7 +75,7 @@ const CURATED_INITIAL_SONGS: SongItem[] = [
     platform: "YouTube",
     url: "https://www.youtube.com/watch?v=dX3k_QDnzHE",
     description: "The saxophone solo at 3:04 is transcendental. Best night-drive anthem.",
-    author: "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7",
+    author: "0x83acc57bb9CDe889b248E9c740F5248637cd89f4",
     timestamp: BigInt(Math.floor(Date.now() / 1000) - 86400 * 2),
     likeCount: 38n,
     isActive: true,
@@ -87,7 +87,7 @@ const CURATED_INITIAL_SONGS: SongItem[] = [
     platform: "Spotify",
     url: "https://open.spotify.com/track/69FtXegLqO7uD2xWfH8pZJ",
     description: "Nile Rodgers funk guitar riff perfection. Modern French house classic.",
-    author: "0x53d284357ec70cE289D6D64134DfAc8E511c8a3D",
+    author: "0x83acc57bb9CDe889b248E9c740F5248637cd89f4",
     timestamp: BigInt(Math.floor(Date.now() / 1000) - 3600 * 12),
     likeCount: 29n,
     isActive: true,
@@ -99,7 +99,7 @@ const CURATED_INITIAL_SONGS: SongItem[] = [
     platform: "SoundCloud",
     url: "https://soundcloud.com/deadmau5/strobe",
     description: "10-minute progressive house journey. The definition of electronic builds.",
-    author: "0x95222290DD7278Aa3Ddd389Cc1E1d165CC4BAfe5",
+    author: "0x83acc57bb9CDe889b248E9c740F5248637cd89f4",
     timestamp: BigInt(Math.floor(Date.now() / 1000) - 3600 * 4),
     likeCount: 19n,
     isActive: true,
@@ -628,16 +628,31 @@ export default function SoundDropApp() {
                 <span className="text-2xl font-black tracking-tight text-white">
                   Sound<span className="text-[#DFFF00]">Drop</span>
                 </span>
-                <a
-                  href={BOTCHAIN_EXPLORER_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  title="View on BOT Chain Explorer"
-                  className="text-[10px] tracking-wider uppercase font-bold px-2.5 py-0.5 rounded-full bg-[#DFFF00]/10 text-[#DFFF00] border border-[#DFFF00]/20 hover:bg-[#DFFF00]/20 hover:border-[#DFFF00]/40 transition flex items-center gap-1"
-                >
-                  BOT Chain Mainnet
-                  <ExternalLink className="w-2.5 h-2.5" />
-                </a>
+                <div className="hidden sm:flex items-center gap-1.5">
+                  <a
+                    href={BOTCHAIN_WEBSITE_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    title="BOT Chain Official Website"
+                    className="text-[10px] tracking-wider uppercase font-bold px-2 py-0.5 rounded-full bg-[#18181B] text-zinc-300 border border-[#27272A] hover:border-[#00C087]/50 hover:text-white transition flex items-center gap-1"
+                  >
+                    <img src="/botchain-logo.png" alt="BOT Chain" className="w-3 h-3 rounded object-contain" />
+                    botchain.ai
+                    <ExternalLink className="w-2.5 h-2.5 text-[#00C087]" />
+                  </a>
+
+                  <a
+                    href={BOTCHAIN_EXPLORER_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    title="BOT Chain Explorer"
+                    className="text-[10px] tracking-wider uppercase font-bold px-2 py-0.5 rounded-full bg-[#DFFF00]/10 text-[#DFFF00] border border-[#DFFF00]/20 hover:bg-[#DFFF00]/20 hover:border-[#DFFF00]/40 transition flex items-center gap-1"
+                  >
+                    <img src="/botchain-logo.png" alt="BOT Chain" className="w-3 h-3 rounded object-contain" />
+                    scan.botchain.ai
+                    <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                </div>
               </div>
               <p className="text-xs text-[#A1A1AA] hidden sm:block tracking-wide">
                 Discover. Share. Repeat.
@@ -647,6 +662,20 @@ export default function SoundDropApp() {
 
           {/* Action buttons & Wallet */}
           <div className="flex items-center gap-3">
+            {/* Verified Mainnet Contract Address Pill */}
+            <a
+              href={`${BOTCHAIN_EXPLORER_URL}/address/${SOUND_DROP_ADDRESS}#code`}
+              target="_blank"
+              rel="noreferrer"
+              title={`Verified Mainnet Contract: ${SOUND_DROP_ADDRESS}`}
+              className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#18181B] border border-[#27272A] hover:border-[#DFFF00]/40 text-xs font-mono text-zinc-300 hover:text-white transition"
+            >
+              <img src="/botchain-logo.png" alt="BOT Chain" className="w-3.5 h-3.5 rounded object-contain" />
+              <span className="font-sans font-bold text-[10px] uppercase tracking-wider text-[#DFFF00]">Mainnet:</span>
+              <span>{shortenAddress(SOUND_DROP_ADDRESS)}</span>
+              <ExternalLink className="w-3 h-3 text-[#DFFF00]" />
+            </a>
+
             {/* Submit CTA button */}
             <button
               onClick={() => {
@@ -746,9 +775,43 @@ export default function SoundDropApp() {
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-[#A1A1AA] leading-relaxed mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-[#A1A1AA] leading-relaxed mb-6 max-w-2xl mx-auto">
               SoundDrop is a permissionless, on-chain music recommendation protocol. Share the tracks you can&apos;t stop listening to, discover rare gems curated by real listeners, and upvote the sound of tomorrow.
             </p>
+
+            {/* Verified Mainnet Contract Banner */}
+            <div className="inline-flex flex-wrap items-center justify-center gap-2.5 px-4 py-2 rounded-2xl bg-[#18181B] border border-[#27272A] hover:border-[#DFFF00]/30 transition text-xs mb-8 shadow-lg max-w-full">
+              <div className="flex items-center gap-2">
+                <img src="/botchain-logo.png" alt="BOT Chain" className="w-4 h-4 rounded object-contain" />
+                <span className="font-semibold text-white">BOT Chain Mainnet (677)</span>
+              </div>
+              <span className="text-zinc-600 hidden sm:inline">&bull;</span>
+              <div className="flex items-center gap-1.5 font-mono">
+                <span className="text-zinc-400 font-sans text-[11px]">Contract:</span>
+                <span className="text-[#DFFF00] font-bold tracking-tight">{SOUND_DROP_ADDRESS}</span>
+                <button
+                  onClick={() => copyToClipboard(SOUND_DROP_ADDRESS)}
+                  className="p-1 hover:text-white text-zinc-400 rounded hover:bg-zinc-800 transition"
+                  title="Copy Contract Address"
+                >
+                  {copiedAddress === SOUND_DROP_ADDRESS ? (
+                    <Check className="w-3.5 h-3.5 text-[#DFFF00]" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
+              <span className="text-zinc-600 hidden sm:inline">&bull;</span>
+              <a
+                href={`${BOTCHAIN_EXPLORER_URL}/address/${SOUND_DROP_ADDRESS}#code`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#00C087] hover:underline flex items-center gap-1 font-semibold text-[11px]"
+              >
+                <span>View on Explorer</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
 
             {/* Quick Actions */}
             <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
@@ -1251,9 +1314,11 @@ export default function SoundDropApp() {
           {/* Ecosystem Links Banner */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-[#18181B]/80 border border-[#27272A]">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#DFFF00]/10 border border-[#DFFF00]/30 flex items-center justify-center text-[#DFFF00] font-bold text-sm">
-                BOT
-              </div>
+              <img
+                src="/botchain-logo.png"
+                alt="BOT Chain Logo"
+                className="w-12 h-12 rounded-xl object-contain border border-[#27272A] shadow-md"
+              />
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-white text-sm">Powered by BOT Chain</span>
@@ -1262,7 +1327,7 @@ export default function SoundDropApp() {
                   </span>
                 </div>
                 <p className="text-xs text-zinc-400">
-                  Decentralized, fast & low-fee EVM blockchain &bull; Native Token: {BOTCHAIN_NATIVE_TOKEN}
+                  Fast, secure & low-fee EVM blockchain &bull; Native Token: {BOTCHAIN_NATIVE_TOKEN}
                 </p>
               </div>
             </div>
@@ -1272,8 +1337,9 @@ export default function SoundDropApp() {
                 href={BOTCHAIN_WEBSITE_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#27272A]/70 text-white hover:bg-[#DFFF00] hover:text-black transition"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-[#27272A]/70 text-white hover:bg-[#DFFF00] hover:text-black transition"
               >
+                <img src="/botchain-logo.png" alt="BOT Chain" className="w-4 h-4 rounded object-contain shrink-0" />
                 <span>BOT Chain Website</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
@@ -1282,19 +1348,21 @@ export default function SoundDropApp() {
                 href={BOTCHAIN_EXPLORER_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#27272A]/70 text-white hover:bg-[#DFFF00] hover:text-black transition"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-[#27272A]/70 text-white hover:bg-[#DFFF00] hover:text-black transition"
               >
+                <img src="/botchain-logo.png" alt="BOT Chain" className="w-4 h-4 rounded object-contain shrink-0" />
                 <span>BOT Chain Explorer</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
 
               <a
-                href={`${BOTCHAIN_EXPLORER_URL}/address/${SOUND_DROP_ADDRESS}`}
+                href={`${BOTCHAIN_EXPLORER_URL}/address/${SOUND_DROP_ADDRESS}#code`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-[#DFFF00]/30 text-[#DFFF00] hover:bg-[#DFFF00]/10 transition"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold border border-[#DFFF00]/30 text-[#DFFF00] hover:bg-[#DFFF00]/10 transition"
               >
-                <span>Verified Contract</span>
+                <img src="/botchain-logo.png" alt="BOT Chain" className="w-4 h-4 rounded object-contain shrink-0" />
+                <span>Verified Mainnet Contract</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -1315,8 +1383,9 @@ export default function SoundDropApp() {
                 href={BOTCHAIN_WEBSITE_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#DFFF00] transition"
+                className="hover:text-[#DFFF00] transition flex items-center gap-1.5"
               >
+                <img src="/botchain-logo.png" alt="BOT Chain" className="w-3.5 h-3.5 rounded-sm object-contain" />
                 botchain.ai
               </a>
               <span>&bull;</span>
@@ -1324,8 +1393,9 @@ export default function SoundDropApp() {
                 href={BOTCHAIN_EXPLORER_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#DFFF00] transition"
+                className="hover:text-[#DFFF00] transition flex items-center gap-1.5"
               >
+                <img src="/botchain-logo.png" alt="BOT Chain" className="w-3.5 h-3.5 rounded-sm object-contain" />
                 scan.botchain.ai
               </a>
             </div>
